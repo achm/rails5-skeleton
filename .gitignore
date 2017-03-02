@@ -19,3 +19,7 @@
 .byebug_history
 /public/packs
 /node_modules
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml

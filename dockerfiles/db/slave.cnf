@@ -1,0 +1,8 @@
+[mysqld]
+datadir=/var/log/mysql_slave
+log-bin=/var/log/mysql_slave/bin-log
+innodb_data_home_dir=/var/log/mysql_slave
+innodb_log_group_home_dir=/var/log/mysql_slave
+server-id=2
+
+read_only

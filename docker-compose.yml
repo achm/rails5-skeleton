@@ -3,7 +3,7 @@ services:
   rails: &app_base
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: dockerfiles/Dockerfile.dev
     command: ["bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0"]
     volumes:
       - .:/app
@@ -12,9 +12,12 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - db
+      - db_master
+      - db_slave
     environment:
-      DATABASE_HOST: db
+      DATABASE_HOST: db_master
+      DATABASE_USER: rails
+      DATABASE_PASSWORD: rails
     tty: true
     stdin_open: true
   spring:
@@ -23,18 +26,44 @@ services:
     ports: []
     tty: false
     stdin_open: false
-  db:
-    image: mysql:5.7
+  db_master:
+    build:
+      context: ./dockerfiles/
+      dockerfile: db/Dockerfile.master
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_DATABASE: appname_development
+      MYSQL_TEST_DATABASE: appname_test
+      MYSQL_USER: rails
+      MYSQL_PASSWORD: rails
     volumes_from:
       - data
     ports:
       - 3306:3306
+  db_slave:
+    build:
+      context: ./dockerfiles/
+      dockerfile: db/Dockerfile.slave
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+      MYSQL_DATABASE: appname_development
+      MYSQL_TEST_DATABASE: appname_test
+      MYSQL_USER: rails
+      MYSQL_PASSWORD: rails
+      MYSQL_MASTER_HOST: db_master
+      MYSQL_MASTER_USER: root
+      MYSQL_MASTER_PASSWORD:
+    depends_on:
+      - db_master
+    volumes_from:
+      - data
+    ports:
+      - 3307:3306
   data:
     image: busybox
     volumes:
-      - db:/var/lib/mysql
+      - db:/var/lib/mysql_master
+      - db:/var/lib/mysql_slave
       - bundle:/usr/local/bundle
 
 volumes:

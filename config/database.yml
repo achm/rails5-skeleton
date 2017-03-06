@@ -9,13 +9,28 @@ default: &default
   host:      <%= ENV.fetch('DATABASE_HOST') { 'localhost' } %>
   port:      <%= ENV.fetch('DATABASE_PORT') { 3306 } %>
 
-development:
+development: &development
   <<: *default
   database: appname_development
 
-test:
+development_master:
+  <<: *development
+
+development_slave:
+  <<: *development
+  host: <%= ENV.fetch('DATABASE_SLAVE_HOST') { 'localhost' } %>
+
+
+test: &test
   <<: *default
   database: appname_test
+
+test_master:
+  <<: *test
+
+test_slave:
+  <<: *test
+  host: <%= ENV.fetch('DATABASE_SLAVE_HOST') { 'localhost' } %>
 
 production:
   <<: *default

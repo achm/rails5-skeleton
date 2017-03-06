@@ -16,6 +16,7 @@ services:
       - db_slave
     environment:
       DATABASE_HOST: db_master
+      DATABASE_SLAVE_HOST: db_slave
       DATABASE_USER: rails
       DATABASE_PASSWORD: rails
     tty: true

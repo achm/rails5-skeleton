@@ -14,6 +14,7 @@ gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', github: "rails/sass-rails"
 gem 'slim-rails', github: "slim-template/slim-rails"
+gem 'switch_point'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', github: 'rails/webpacker'
 

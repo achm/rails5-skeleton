@@ -36,6 +36,7 @@ end
 
 group :test do
   gem 'capybara', '~> 2.7.0'
+  gem 'database_rewinder'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
 end

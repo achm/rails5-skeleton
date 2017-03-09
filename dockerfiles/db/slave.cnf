@@ -6,3 +6,8 @@ innodb_log_group_home_dir=/var/log/mysql_slave
 server-id=2
 
 read_only
+
+character-set-server=utf8mb4
+
+[client]
+default-character-set=utf8mb4

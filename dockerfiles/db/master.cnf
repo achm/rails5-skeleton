@@ -4,3 +4,8 @@ log-bin=/var/log/mysql_master/bin-log
 innodb_data_home_dir=/var/log/mysql_master
 innodb_log_group_home_dir=/var/log/mysql_master
 server-id=1
+
+character-set-server=utf8mb4
+
+[client]
+default-character-set=utf8mb4

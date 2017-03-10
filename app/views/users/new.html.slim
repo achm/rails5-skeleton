@@ -1,0 +1,18 @@
+= provide(:title, 'SIGN UP')
+h1 Sign up
+.row
+  .col-md-6.col-md-offset-3
+    = form_for(@user) do |uf|
+      = uf.label :name
+      = uf.text_field :name
+
+      = uf.label :email
+      = uf.text_field :email
+
+      = uf.label :password
+      = uf.password_field :password
+
+      = uf.label :password_confirmation, "Confirmation"
+      = uf.password_field :password_confirmation
+
+      = uf.submit "Create my account", class: "btn btn-primary"

@@ -3,9 +3,8 @@
 .center.jumbotron
   h1 Welcome
   h2
-    | this is the HOME page for the &nbsp
-    = link_to 'tutorial', '#'
-    | &nbsp sample.
+    | this is the HOME page for the #{link_to 'tutorial', '#'}
+    | sample.
   = link_to "Sign up Now", "#", class:"btn btn-lg btn-primary"
 
 = link_to image_tag("rails.png", alt: "LOGO"), 'http://rubyonrails.org/'

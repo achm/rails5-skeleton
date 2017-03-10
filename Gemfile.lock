@@ -60,6 +60,8 @@ GEM
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
     arel (8.0.0)
+    autoprefixer-rails (6.7.6)
+      execjs
     bcrypt (3.1.11)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -67,6 +69,9 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.3.6)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     builder (3.2.3)
     byebug (9.0.6)
     capybara (2.7.1)
@@ -227,6 +232,7 @@ DEPENDENCIES
   bcrypt (= 3.1.11)
   better_errors
   binding_of_caller
+  bootstrap-sass (= 3.3.6)
   byebug
   capybara (~> 2.7.0)
   config

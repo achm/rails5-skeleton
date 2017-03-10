@@ -1,0 +1,10 @@
+footer.footer
+  small
+    | The #{ link_to 'RoR tutorial', 'http://rubyonrails.org/' } by
+    | #{link_to 'Michael Hartl', 'http://www.michaelhartl.com/'}
+
+  nav
+    ul
+      li = link_to "about", about_path
+      li = link_to "contact", "#"
+      li = link_to "news", "http://news.railstutorial.org/"

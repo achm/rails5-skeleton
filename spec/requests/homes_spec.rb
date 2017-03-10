@@ -16,5 +16,11 @@ RSpec.describe "Homes", type: :request do
       get "/help"
       expect(response).to have_http_status(200)
     end
+
+    it "show user" do
+      User.with_writable {User.create(name: 'before', email: 'before@example.com', password: "foobar", password_confirmation: "foobar")}
+      get "/users/1"
+      expect(response).to have_http_status(200)
+    end
   end
 end

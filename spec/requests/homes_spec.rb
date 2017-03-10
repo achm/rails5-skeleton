@@ -17,10 +17,15 @@ RSpec.describe "Homes", type: :request do
       expect(response).to have_http_status(200)
     end
 
-    it "show user" do
-      User.with_writable {User.create(name: 'before', email: 'before@example.com',
-                                      password: "foobar", password_confirmation: "foobar")}
-      get "/users/1"
+    # it "show user" do
+    #   UsersController.any_instance.stub(:validates_fbid)
+    #   User.new(name: 'test', email: 'test@test.com', password: "foobar", password_confirmation: "foobar")
+    #   get "/users/1"
+    #   expect(response).to have_http_status(200)
+    # end
+
+    it "signup" do
+      get "/signup"
       expect(response).to have_http_status(200)
     end
   end

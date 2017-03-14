@@ -21,6 +21,11 @@ RSpec.describe "Homes", type: :request do
       get "/signup"
       expect(response).to have_http_status(200)
     end
+
+    it "login" do
+      get "/login"
+      expect(response).to have_http_status(200)
+    end
   end
 
   describe "POST Request" do
@@ -60,6 +65,42 @@ RSpec.describe "Homes", type: :request do
     it "response success" do
       post users_path, test_success_user_param
       expect(response.status).to eq(302)
+    end
+  end
+
+  describe "POST Login Request" do
+    let(:test_error_user_param) do
+      {
+          params:{
+              session: {
+                  email: 'test@invalid.com',
+                  password: 'foo',
+              }
+          }
+      }
+    end
+
+    let(:test_success_user_param) do
+      {
+          params:{
+              session: {
+                  email: 'test@success.com',
+                  password: 'rails5',
+              }
+          }
+      }
+    end
+
+
+    it "response login contain invalid" do
+      post login_path, test_error_user_param
+      expect(response.status).to eq(200)
+      expect(response.body).to include('Invalid')
+    end
+
+    it "response login success" do
+      post login_path, test_success_user_param
+      expect(response.status).to eq(200)
     end
   end
 end

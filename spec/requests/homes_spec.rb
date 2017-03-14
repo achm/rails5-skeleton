@@ -96,6 +96,8 @@ RSpec.describe "Homes", type: :request do
       post login_path, test_error_user_param
       expect(response.status).to eq(200)
       expect(response.body).to include('Invalid')
+      get root_path
+      expect(response.body).not_to include('Invalid')
     end
 
     it "response login success" do

@@ -24,7 +24,7 @@ RSpec.describe "Homes", type: :request do
   end
 
   describe "POST Request" do
-    let(:test_user_param) do
+    let(:test_error_user_param) do
       {
           params:{
               user: {
@@ -37,10 +37,29 @@ RSpec.describe "Homes", type: :request do
       }
     end
 
+    let(:test_success_user_param) do
+      {
+          params:{
+              user: {
+                  name: 'abcdef',
+                  email: 'test@success.com',
+                  password: 'rails5',
+                  password_confirmation: 'rails5'
+              }
+          }
+      }
+    end
+
+
     it "response contain error" do
-      post users_path, test_user_param
+      post users_path, test_error_user_param
       expect(response.status).to eq(200)
       expect(response.body).to include('error')
+    end
+
+    it "response success" do
+      post users_path, test_success_user_param
+      expect(response.status).to eq(302)
     end
   end
 end

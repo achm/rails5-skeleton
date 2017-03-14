@@ -10,7 +10,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if User.with_writable { @user.save }
+      flash[:success] = "Welcome!"
 
+      # redirect_to user_url(@user)
+      redirect_to @user
     else
       render 'new'
     end
